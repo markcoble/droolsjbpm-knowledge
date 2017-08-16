@@ -17,6 +17,7 @@
 package org.kie.api.runtime.builder;
 
 import org.kie.api.builder.ReleaseId;
+import org.kie.api.command.Command;
 import org.kie.api.runtime.Executable;
 
 public interface ExecutableBuilder extends TimeFluent<ExecutableBuilder>, ContextFluent<ExecutableBuilder, ExecutableBuilder> {
@@ -25,11 +26,14 @@ public interface ExecutableBuilder extends TimeFluent<ExecutableBuilder>, Contex
 
     Executable getExecutable();
 
+   // Object addCommand(Command command, long after);
+
     static ExecutableBuilder create() {
         try {
-            return (ExecutableBuilder) Class.forName( "org.drools.core.fluent.impl.ExecutableBuilderImpl" ).newInstance();
+            return (ExecutableBuilder) Class.forName("org.drools.core.fluent.impl.ExecutableBuilderImpl").newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Unable to instance ExecutableRunner", e);
+            throw new RuntimeException("Unable to instance ExecutableRunner",
+                                       e);
         }
     }
 }
